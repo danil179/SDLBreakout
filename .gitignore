@@ -295,3 +295,6 @@ __pycache__/
 
 # Libs - Added seperatly
 Libs/
+
+#Log
+Resources/log.txt

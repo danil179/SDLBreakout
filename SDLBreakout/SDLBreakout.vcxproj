@@ -88,9 +88,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <None Include="README" />
-  </ItemGroup>
-  <ItemGroup>
     <ClCompile Include="ball.cpp" />
     <ClCompile Include="brick.cpp" />
     <ClCompile Include="debug.cpp" />
@@ -117,6 +114,10 @@
     <ClInclude Include="breakout-main.h" />
     <ClInclude Include="sdl-manager.h" />
     <ClInclude Include="sprite.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\LICENSE" />
+    <None Include="..\README" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

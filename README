@@ -1,0 +1,12 @@
+Compiling:
+	Compile with VS2015 (libs for VS2015 from: https://github.com/guaxiao/renderer.gua/tree/master/platform/win/SDL-1.2.15/vs2015-x86, there are problems with the original libs in SDL site).
+	Check that the "Libs" folder in the solution folder, otherwise SDL includes and libs will be missing and the build will fail.
+	The dlls of SDL are in the "Libs/SDL-1.2.15/dll" folder
+Code:
+	Followed "Google C++ Style Guide" (excluding "#pragma once" and maybe more)
+	
+Graphics:
+	The tiles (and more) from here: opengameart.org/content/breakout-graphics-no-shadow
+
+License:
+	GPL v3

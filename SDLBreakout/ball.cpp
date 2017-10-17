@@ -15,7 +15,7 @@ void Ball::Move() {
   int h = GraphicsManager::GetScreenHeight();
 
   // Borders collison check
-  if (get_x()  <= 0 || (get_x()+get_width()) >= w) {
+  if (get_x() <= 0 || (get_x()+get_width()) >= w) {
     angle_ = 180 - angle_;
     if ((int)get_x() <= 0) {
       this->set_x(1);

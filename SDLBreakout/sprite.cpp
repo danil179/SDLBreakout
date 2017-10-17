@@ -1,10 +1,9 @@
 #include "sprite.h"
 
-Sprite::Sprite(std::string _image_file, SDL_Rect clip, Uint32 _color) {
-  image_file_ = _image_file;
-  background_color_ = _color;
-  if(image_file_ != "")
-  {
+Sprite::Sprite(std::string image_file, SDL_Rect clip, Uint32 color) {
+  image_file_ = image_file;
+  background_color_ = color;
+  if (image_file_ != "") {
     image_ = GraphicsManager::LoadImageSurface(image_file_,background_color_);
   } else {
     image_ = NULL;
@@ -16,7 +15,7 @@ SDL_Surface* Sprite::get_surface() {
 }
 SDL_Rect* Sprite::get_clip()
 {
-  if(cut_image_.h == 0 && cut_image_.w == 0 && cut_image_.x == 0 && cut_image_.y == 0) {
+  if (cut_image_.h == 0 && cut_image_.w == 0 && cut_image_.x == 0 && cut_image_.y == 0) {
     return NULL;
   }
   return &cut_image_;
@@ -26,7 +25,7 @@ void Sprite::set_image(string file) {
   this->UpdateImage();
 }
 void Sprite::UpdateImage() {
-  if(image_file_ != "") {
+  if (image_file_ != "") {
     this->image_ = GraphicsManager::LoadImageSurface(image_file_,background_color_);
   }
 }

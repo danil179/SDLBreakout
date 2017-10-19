@@ -6,7 +6,8 @@ Code:
 	Followed "Google C++ Style Guide" (excluding "#pragma once" and maybe more)
 	
 Graphics:
-	The tiles (and more) from here: opengameart.org/content/breakout-graphics-no-shadow
+	The tiles (Resources/breakout_tiles.png and also folder Bricks/) (and more) from here: opengameart.org/content/breakout-graphics-no-shadow
 
 License:
-	GPL v3
+	The code under the GPL v3, also some of the resources that are not taken from the tiles, 
+	all other content under other licenses as described earlier in this README or on the sites corresponds to that files (such as SDL libs).

@@ -6,7 +6,7 @@ The dlls of SDL are in the "Libs/SDL-1.2.15/dll" folder
 Followed "Google C++ Style Guide" (excluding "#pragma once" and maybe more)
 	
 ## Graphics:
-The tiles (Resources/breakout_tiles.png and also folder Bricks/) (and more) from here: opengameart.org/content/breakout-graphics-no-shadow
+The tiles (Resources/breakout_tiles.png and also folder Bricks/) (and more) from here: https://opengameart.org/content/breakout-graphics-no-shadow
 
 ## License:
 The code under the GPL v3, also some of the resources that are not taken from the tiles, 

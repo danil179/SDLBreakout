@@ -1,7 +1,7 @@
 #include "paddle.h"
 
 Paddle::Paddle(int x, int y)
-    : Object("breakout_tiles.png",0x000000,x,y,
+    : Object(TYPE_PADDLE, "breakout_tiles.png",0x000000,x,y,
              GraphicsManager::InitRect(0, 240, 112, 24)) {
   this->speedx_ = 0;
   this->speedy_ = 0;
@@ -32,7 +32,7 @@ Paddle::Paddle(int x, int y)
   breakout_debug::DebugLine("Paddle width:"+ breakout_debug::IntToStr(this->get_width()));
   breakout_debug::DebugLine("Paddle height:"+ breakout_debug::IntToStr(this->get_height()));
 }
-void Paddle::Step ()
+void Paddle::Step()
 {
   int x,y;
   SDL_GetMouseState(&x,&y);
@@ -87,4 +87,9 @@ void Paddle::IncreaseSpeed(float x, float y) {
 void Paddle::BreakSpeed() {
   this->speedx_ = 0;
   this->speedy_ = 0;
+}
+
+void Paddle::OnCollision(Object* collider)
+{
+    
 }

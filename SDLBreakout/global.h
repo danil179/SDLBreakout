@@ -9,5 +9,5 @@
 #include "graphics-manager.h"
 #include "sdl-manager.h"
 
-enum BrickType {BLUE_BRICK, RED_BRICK};
+enum BrickType {PURPLE_BRICK, RED_BRICK};
 enum ObjectType {TYPE_PADDLE , TYPE_BRICK, TYPE_BALL};

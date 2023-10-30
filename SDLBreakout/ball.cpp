@@ -1,7 +1,7 @@
 #include "ball.h"
 
 Ball::Ball(float s, int xpos, int ypos, float angle) 
-    : Object("breakout_tiles.png", 0x000000, xpos, ypos, 
+    : Object(TYPE_BALL,"breakout_tiles.png", 0x000000, xpos, ypos, 
              GraphicsManager::InitRect(160, 200, 16, 16)) {
   speed_ = s;
   this->angle_ = angle;
@@ -87,4 +87,15 @@ void Ball::set_speed(float s) {
 }
 void Ball::set_angle(float angle) {
   this->angle_ = angle;
+}
+
+void Ball::OnCollision(Object* collider)
+{
+    this->Bounce(collider->get_bounding_box(), collider->get_type());
+    switch(collider->get_type())
+    {
+        case TYPE_BRICK:
+            this->Move();
+            break;
+    }      
 }

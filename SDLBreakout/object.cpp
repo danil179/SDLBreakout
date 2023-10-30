@@ -1,9 +1,10 @@
 #include "object.h"
 
-Object::Object(std::string image_path, Uint32 color, int x, int y, 
+Object::Object(ObjectType obj_type, std::string image_path, Uint32 color, int x, int y, 
                SDL_Rect clip) 
     : image_(image_path,clip,color) {
   bounding_box_ = new SDL_Rect();
+  this->obj_type_ = obj_type;
   this->set_x(x);
   this->set_y(y);
   dead_ = false;

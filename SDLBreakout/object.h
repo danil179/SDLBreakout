@@ -4,7 +4,7 @@
 
 class Object {
  public:
-  Object(std::string image_path, Uint32 color = 0xFF00FF, int x = 0, int y = 0, 
+  Object(ObjectType obj_type, std::string image_path, Uint32 color = 0xFF00FF, int x = 0, int y = 0, 
          SDL_Rect clip = SDL_Rect());
   ~Object();
   void Draw();
@@ -20,6 +20,7 @@ class Object {
   void set_width(int w);
   void set_height(int h);
   void set_imagefile(std::string file);
+  virtual void OnCollision(Object* collider) = 0;
   SDL_Rect get_bounding_box();
 
  private:

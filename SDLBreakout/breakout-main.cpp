@@ -120,7 +120,7 @@ void Logic() {
     {
         if(CheckCollison(player->get_bounding_box(),player_paddle.get_bounding_box()))
         {
-            player->Bounce(player_paddle.get_bounding_box(),TYPE_PADDLE);
+            player->OnCollision(&player_paddle);
         }
         // DEPRECTED - check collison of the paddle with all the bricks
         //for(unsigned int j=0;j<(unsigned)num_obj;j++)
@@ -208,9 +208,8 @@ bool GridCollison(Ball& obj) {
         // Brick index in the wall
         int index = (x_corners[i] / 32) + (y_corners[j] / 32) * WALL_WIDTH;
         if (!obj_arr[index]->IsDead()) {
-          obj.Bounce(obj_arr[index]->get_bounding_box(), TYPE_BRICK);
-          obj_arr[index]->Destroy();
-          obj.Move();
+          obj.OnCollision(obj_arr[index]);
+          obj_arr[index]->OnCollision(&obj);
           return true;
         }
       }

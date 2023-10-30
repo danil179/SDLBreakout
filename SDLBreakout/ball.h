@@ -10,6 +10,7 @@ class Ball : public Object {
   float get_speed();
   void set_speed(float s);
   void set_angle(float angle);
+  void OnCollision(Object* collider) override;
 
  private:
   float speed_;

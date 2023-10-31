@@ -3,6 +3,7 @@
 #include "Ball.h"
 #include "brick.h"
 #include "Paddle.h"
+#include "object-manager.h"
 
 bool CheckCollison(SDL_Rect object,SDL_Rect target);
 bool GridCollison(Ball &obj);

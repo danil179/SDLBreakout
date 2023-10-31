@@ -28,6 +28,10 @@ void Object::set_imagefile(string file) {
   this->set_height(sur->h);
   this->set_width(sur->w);
 }
+void Object::set_clip(SDL_Rect clip) { 
+  image_.set_clip(clip); 
+}
+void Object::OnCollision(Object* collider) {}
 int Object::get_width() {
   return bounding_box_->w;
 }
@@ -42,6 +46,8 @@ double Object::get_y() {
 }
 ObjectType Object::get_type() {
   return this->obj_type_;
+}
+void Object::Move() {
 }
 SDL_Rect Object::get_bounding_box() {
   return *bounding_box_;

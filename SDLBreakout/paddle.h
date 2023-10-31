@@ -1,6 +1,7 @@
 #pragma once
 #include "global.h"
 #include "object.h"
+#include "powerup.h"
 
 class Paddle: public Object {
  public:
@@ -9,7 +10,7 @@ class Paddle: public Object {
   void Step();
   void BreakSpeed();
   void OnCollision(Object* collider) override;
-  SDL_Rect image_cut_;
+  void update_clip();
   int type_;
   float speedx_;
   float speedy_;

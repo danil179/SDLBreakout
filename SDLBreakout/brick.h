@@ -1,6 +1,8 @@
 #pragma once
 #include "global.h"
 #include "object.h"
+#include "object-manager.h"
+#include "powerup.h"
 
 class Brick : public Object {
  public:

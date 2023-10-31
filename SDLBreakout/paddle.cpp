@@ -1,33 +1,14 @@
 #include "paddle.h"
 
 Paddle::Paddle(int x, int y)
-    : Object(TYPE_PADDLE, "breakout_tiles.png",0x000000,x,y,
+    : Object(TYPE_PADDLE, "breakout_tiles.png", 0x000000, x, y,
              GraphicsManager::InitRect(0, 240, 112, 24)) {
   this->speedx_ = 0;
   this->speedy_ = 0;
 
-  this->type_ = 1;
+  this->type_ = 2;
 
-  switch (type_) {
-  case 1:
-    this->image_cut_.h = 24;
-    this->image_cut_.w = 96;
-    this->image_cut_.x = 0;
-    this->image_cut_.y = 200;
-    break;
-  case 2:
-    this->image_cut_.h = 24;
-    this->image_cut_.w = 112;
-    this->image_cut_.x = 0;
-    this->image_cut_.y = 240;
-    break;
-  case 3:
-    this->image_cut_.h = 24;
-    this->image_cut_.w = 128;
-    this->image_cut_.x = 0;
-    this->image_cut_.y = 280;
-    break;
-  }
+  this->update_clip();
 
   breakout_debug::DebugLine("Paddle width:"+ breakout_debug::IntToStr(this->get_width()));
   breakout_debug::DebugLine("Paddle height:"+ breakout_debug::IntToStr(this->get_height()));
@@ -89,7 +70,30 @@ void Paddle::BreakSpeed() {
   this->speedy_ = 0;
 }
 
-void Paddle::OnCollision(Object* collider)
-{
-    
+void Paddle::OnCollision(Object* collider) {
+
+  if (collider->get_type() == TYPE_POWERUP) {
+    Powerup* pwr = reinterpret_cast<Powerup*>(collider);
+    if (pwr->power_type == TYPE_PWR_PADDLE_UP) this->type_ += 1;
+    else if(pwr->power_type == TYPE_PWR_PADDLE_DOWN) this->type_ -= 1;
+    if (this->type_ > 3) this->type_ = 3;
+    else if (this->type_ < 1) this->type_ = 1;
+    this->update_clip();
+    collider->Destroy();
+    return;
+  }
+}
+
+void Paddle::update_clip() {
+  switch (this->type_) {
+    case 1:
+      this->set_clip(GraphicsManager::InitRect(0, 200, 96, 24));
+      break;
+    case 2:
+      this->set_clip(GraphicsManager::InitRect(0, 240, 112, 24));
+      break;
+    case 3:
+      this->set_clip(GraphicsManager::InitRect(0, 280, 128, 24));
+      break;
+  }
 }

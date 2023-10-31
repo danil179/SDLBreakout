@@ -18,6 +18,8 @@ Object* obj_arr[WALL_HEIGHT * WALL_WIDTH];
 unsigned int num_obj = 0;
 
 int main(int argc, char* args[]) {
+  // Intiialize random number
+  std::srand(time(0));
   // Set up the screen
   GraphicsManager::initalizeScreen(SCREEN_WIDTH, SCREEN_HEIGHT, false);
   screen = GraphicsManager::getScreen();
@@ -52,6 +54,7 @@ int main(int argc, char* args[]) {
   quit = false;
   while (!quit) {
     unsigned int sframe = SDL_GetTicks();
+    ObjectManager::remove_dead();
     Draw();
     Logic();
     ++frames;
@@ -118,31 +121,34 @@ void Logic() {
     }
     else 
     {
-        if(CheckCollison(player->get_bounding_box(),player_paddle.get_bounding_box()))
-        {
-            player->OnCollision(&player_paddle);
+      if (CheckCollison(player->get_bounding_box(),
+                        player_paddle.get_bounding_box())) {
+        player->OnCollision(&player_paddle);
+      }
+      GridCollison(*player);
+      player->Move();
+      // DEPRECTED - check collison of the paddle with all the bricks
+      // for(unsigned int j=0;j<(unsigned)num_obj;j++)
+      //{
+      //	if(!obj_arr[j]->IsDead() &&
+      //CheckCollison(player->get_bounding_box(),obj_arr[j]->get_bounding_box()))
+      //	{
+      //		player->Bounce(obj_arr[j]->get_bounding_box(),TypeBrick);
+      //		obj_arr[j]->Destroy();
+      //		player->Move();
+      //			
+        //	}
+      //}
+      
+      // Check collision of the powerup with the paddle
+      for(Object* o : ObjectManager::get_objects())
+      {
+        if (o->IsDead()) continue;
+        if (CheckCollison(player_paddle.get_bounding_box(),
+                          o->get_bounding_box())) {
+          player_paddle.OnCollision(o);
         }
-        // DEPRECTED - check collison of the paddle with all the bricks
-        //for(unsigned int j=0;j<(unsigned)num_obj;j++)
-        //{
-        //	if(!obj_arr[j]->IsDead() && CheckCollison(player->get_bounding_box(),obj_arr[j]->get_bounding_box()))
-        //	{
-        //		player->Bounce(obj_arr[j]->get_bounding_box(),TypeBrick);
-        //		obj_arr[j]->Destroy();
-        //		player->Move();
-        //			
-        //	}
-        //}
-        GridCollison(*player);
-        // DEPRECTED - rectangle box collison detection (slow)
-        //for(int i=0;i<ObjectManager::objects.size();i++)
-        //{
-        //	if(CheckCollison(player->get_bounding_box(),ObjectManager::objects[i]->get_bounding_box()))
-        //	{
-        //		player->Bounce(*player,*(ObjectManager::objects[i]));
-        //	}
-        //}
-        player->Move();
+      }
     }
   }
   player_paddle.Step();
@@ -159,6 +165,10 @@ void Draw() {
     if (!obj_arr[j]->IsDead()) {
       obj_arr[j]->Draw();
     }
+  }
+  for (Object* o : ObjectManager::get_objects()) {
+    o->Draw();
+    o->Move();
   }
   // Update screen
   SDL_Flip(screen);

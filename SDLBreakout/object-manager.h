@@ -5,6 +5,9 @@
 // TODO: Implement
 class ObjectManager {
  public:
-  //static void Add(Object* pointer);
-  //static std::vector<Object*> objects;
+  static void add(Object* pointer);
+  static void remove_dead();
+  static std::vector<Object*> get_objects();
+ private:
+  static std::vector<Object*> other_objects;
 };
